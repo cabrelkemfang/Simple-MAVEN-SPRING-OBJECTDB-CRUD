@@ -25,6 +25,9 @@ node {
        archiveArtifacts 'target/*.war'
        }
   
+stage('deploying'){
+deploy adapters: [tomcat8(credentialsId: 'Tomcat user', path: '', url: 'http://localhost:8088/')], contextPath: 'springtest', war: ' **/*.war'
+}
     } catch (e) {
          currentBuild.result = "FAILED"
     throw e
